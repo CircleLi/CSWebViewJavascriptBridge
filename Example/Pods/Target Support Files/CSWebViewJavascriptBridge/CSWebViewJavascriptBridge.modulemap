@@ -1,0 +1,6 @@
+framework module CSWebViewJavascriptBridge {
+  umbrella header "CSWebViewJavascriptBridge-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CSWebViewJavascriptBridge_Example' do
+  pod 'CSWebViewJavascriptBridge', :path => '../'
+
+  target 'CSWebViewJavascriptBridge_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

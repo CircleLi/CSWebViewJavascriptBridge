@@ -1,0 +1,16 @@
+PODS:
+  - CSWebViewJavascriptBridge (0.1.0)
+
+DEPENDENCIES:
+  - CSWebViewJavascriptBridge (from `../`)
+
+EXTERNAL SOURCES:
+  CSWebViewJavascriptBridge:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CSWebViewJavascriptBridge: 7e8aa59a01f3af9bdc43f5758824847e11adb0b6
+
+PODFILE CHECKSUM: 49964037e5102e635e6723d59790ab87a15af67f
+
+COCOAPODS: 1.5.2

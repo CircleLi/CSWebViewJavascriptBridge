@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="CSJSBridgeCore.js"></script>
+    <script type="text/javascript" src="CSJSCommonHandler.js"></script>
+    <script type="text/javascript">
+
+        function test1(){
+            jsCommonHandler.getLocationInfo((data) => {
+                 jsCommonHandler.nativelog('callback getLocationInfo success');
+            });
+        }
+
+        function test2(){
+            jsCommonHandler.registerViewWillAppear(function (data) {
+              
+            });
+
+            jsCommonHandler.registerViewDidAppear(function (data) {
+           
+            });
+            jsCommonHandler.registerViewWillDisappearEvent(function (data) {
+              
+            });
+
+            jsCommonHandler.registerViewDidDisappear(function (data) {
+           
+            });
+
+            jsCommonHandler.registerApplicationWillEnterForegroundNotification(function (data) {
+                jsCommonHandler.nativelog('xxxApplicationWillEnterForegroundNotification');
+            });
+
+            jsCommonHandler.registerApplicationEnterBackgroundEvent(function (data) {
+                
+            });
+
+            jsCommonHandler.registerApplicationBecomeActiveNotification(function (data) {
+               
+            });
+
+            jsCommonHandler.registerApplicationResignActiveEvent(function (data) {
+                
+            });
+        }
+        
+        setTimeout(() => {
+            test2();
+        }, 100);
+
+        </script>
+        <br>
+        <button type="button" onclick = "test1()" style="width:100%; height:30px;"/>getLocationInfo</button>
+        <br>
+        <br>
+        <button type="button" onclick = "test2()" style="width:100%; height:30px;"/>注册js事件</button>
+    
+</body>
+</html>
