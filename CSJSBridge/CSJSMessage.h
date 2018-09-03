@@ -10,7 +10,6 @@
 
 @interface CSJSMessage: NSObject
 
-
 /**
   JS主动调native逻辑，分模块定义业务，common,xx,yy等，一个handler代表一个模块
  */

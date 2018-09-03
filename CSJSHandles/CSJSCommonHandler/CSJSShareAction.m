@@ -15,7 +15,7 @@
 {
     CSJSMessage *responceMessage  = message;
     //doSth
-    NSLog(@"completion shareAction");
+
     jsCallBackBlock ? jsCallBackBlock(responceMessage) : nil;
 }
 

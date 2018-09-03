@@ -7,12 +7,13 @@
 //
 
 #import "CSJSAction.h"
+#import "CSJSLog.h"
 
 @implementation CSJSAction
 
 - (void)callAppActionWithMessage:(CSJSMessage *)message jsCallBackBlock:(CSJSCallBackBlock)jsCallBackBlock
 {
-    NSLog(@"completion action:%@",NSStringFromClass([self class]));
+    CSLog(@"completion action:%@",NSStringFromClass([self class]));
     jsCallBackBlock ? jsCallBackBlock(message) : nil;
 }
 

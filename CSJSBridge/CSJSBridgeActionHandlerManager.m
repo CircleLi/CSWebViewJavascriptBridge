@@ -8,6 +8,7 @@
 
 #import "CSJSBridgeActionHandlerManager.h"
 #import "CSJSHandler.h"
+#import "CSJSLog.h"
 
 @interface CSJSBridgeActionHandlerManager()
 
@@ -57,7 +58,7 @@
             id handler = [[handlerClass alloc] init];
             if(!handler)
             {
-                NSLog(@"<< handlerClass not exist:%@ >>",handlerClassString);
+                CSLog(@"handlerClass not exist:%@",handlerClassString);
             }
             else{
                 if ([handler conformsToProtocol:@protocol(CSJSHandlerProtocol)]) {
@@ -66,11 +67,11 @@
                     CSJSHandler *jsHandler = (CSJSHandler *)handler;
                     jsHandler.handlerName = handlerName;
                 }else{
-                    NSLog(@"<< handler:%@ not conform to protocol:%@ >>",handler, NSStringFromProtocol(@protocol(CSJSHandlerProtocol)));
+                    CSLog(@"handler:%@ not conform to protocol:%@",handler, NSStringFromProtocol(@protocol(CSJSHandlerProtocol)));
                 }
             }
         }];
-        NSLog(@"<< supportJsHandlerMap:%@ >>",_supportJSHandlersMap);
+        CSLog(@"supportJsHandlerMap:%@",_supportJSHandlersMap);
     }
     return _supportJSHandlersMap;
 }
@@ -89,7 +90,7 @@
 {
     id <CSJSHandlerProtocol>handler = self.supportJSHandlersMap[handlerName];
     if (!handler) {
-        NSLog(@"<< error,handler:%@ not register >>",handlerName);
+        CSLog(@"error,handler:%@ not register",handlerName);
     }
     else
     {
@@ -99,7 +100,7 @@
         }
         else
         {
-            NSLog(@"<< error,handler not respondsToSelector 'callAppActionWithMessage: '>>");
+            NSLog(@"error,handler not respondsToSelector 'callAppActionWithMessage: '");
         }
     }
 }

@@ -11,6 +11,8 @@
 #import "CSUIWebViewJavascriptBridge.h"
 #import "CSWKWebViewJavascriptBridge.h"
 #import "CSWebViewJavascriptBridge+Event.h"
+#import "CSJSBridgeManager.h"
+#import "CSJSCustomLogger.h"
 
 @interface CSWebBrowViewController ()
 
@@ -26,6 +28,8 @@
     [self setUpView];
     [self addViewControllerlifeCycleEvents];
     [(UIWebView *)self.webView loadRequest:[NSURLRequest requestWithURL:_url]];
+    
+    [CSJSBridgeManager registerLogger:[CSJSCustomLogger new]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +42,7 @@
     [super viewWillAppear:animated];
   
     [self addApplicationNotificationEvents];
-     [self.bridge dispatchEvent:CSJSWebViewWillAppearEvent data:nil];
+    [self.bridge dispatchEvent:CSJSWebViewWillAppearEvent data:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated

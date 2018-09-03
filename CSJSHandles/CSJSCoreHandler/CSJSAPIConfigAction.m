@@ -18,7 +18,6 @@ NSString *const CSCurrentJSAPIVersion = @"12";
 {
     CSJSMessage *responceMessage  = message;
     responceMessage.JSAPIVersion = CSCurrentJSAPIVersion;
-    NSLog(@"**JSLog:%@**",responceMessage.data);
     jsCallBackBlock ? jsCallBackBlock(responceMessage) : nil;
 }
 

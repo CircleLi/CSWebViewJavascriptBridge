@@ -8,6 +8,7 @@
 
 #import "CSJSHandler.h"
 #import "CSJSAction.h"
+#import "CSJSLog.h"
 
 @interface CSJSHandler()
 
@@ -44,7 +45,7 @@
             id action = [[actionClass alloc] init];
             if(!action)
             {
-                NSLog(@"<< actionClass not exist:%@ >>",actionClassString);
+                CSLog(@"actionClass not exist:%@",actionClassString);
             }
             else{
                 if ([action conformsToProtocol:@protocol(CSJSActionProtocol)]) {
@@ -53,11 +54,11 @@
                     CSJSAction *jsAction = (CSJSAction *)action;
                     jsAction.actionName = actionName;
                 }else{
-                    NSLog(@"<< action:%@ not conform to protocol:%@ >>",action, NSStringFromProtocol(@protocol(CSJSHandlerProtocol)));
+                    CSLog(@"action:%@ not conform to protocol:%@",action, NSStringFromProtocol(@protocol(CSJSHandlerProtocol)));
                 }
             }
         }];
-        NSLog(@"<< supportJsActiomMap:%@ >>",_supportJSActionsMap);
+        NSLog(@"supportJsActiomMap:%@",_supportJSActionsMap);
     }
     return _supportJSActionsMap;
 }
@@ -74,7 +75,7 @@
 {
     id <CSJSActionProtocol>action = self.supportJSActionsMap[actionName];
     if (!action) {
-        NSLog(@"<< error,action:%@ not register >>",actionName);
+        CSLog(@"error,action:%@ not register",actionName);
     }
     else
     {
@@ -84,7 +85,7 @@
         }
         else
         {
-            NSLog(@"<< error,action not respondsToSelector 'callAppActionWithMessage:jsCallBackBlock:'>>");
+            CSLog(@"error,action not respondsToSelector 'callAppActionWithMessage:jsCallBackBlock:'");
         }
     }
 }

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "CSWebViewJavascriptBridge.h"
+#import "CSJSLog.h"
 
 /**
  CSUIWebViewJavascriptBridge为CSWebViewJavascriptBridge的subClass，为UIWebView提供桥接能力

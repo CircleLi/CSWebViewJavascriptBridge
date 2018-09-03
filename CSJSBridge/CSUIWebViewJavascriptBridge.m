@@ -122,7 +122,7 @@
             jsCompletionBlock ? jsCompletionBlock(result) : nil;
         }else{
             if(jsCompletionBlock){
-                NSLog(@"error,js no response,may not register Action,please first register the action");
+                CSLog(@"error,js no response,may not register Action,please first register the action");
             }
         }
     }else{
@@ -133,7 +133,7 @@
                  jsCompletionBlock ? jsCompletionBlock(result) : nil;
             }else{
                 if(jsCompletionBlock){
-                    NSLog(@"error,js no response,may not register Action,please first register the action");
+                    CSLog(@"error,js no response,may not register Action,please first register the action");
                 }
             }
         });

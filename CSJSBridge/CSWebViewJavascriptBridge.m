@@ -9,6 +9,7 @@
 #import "CSWebViewJavascriptBridge.h"
 #import "CSJSBridgeActionHandlerManager.h"
 #import "CSBridgeConstant.h"
+#import "CSJSLog.h"
 
 @implementation CSWebViewJavascriptBridge
 
@@ -42,13 +43,12 @@
 
 - (void)callAppNative:(id)message
 {
-    //NSLog(@"callFromJS,data:%@",message);
     if ([message isKindOfClass:[NSDictionary class]])
     {
         CSJSMessage *messageBody = [CSJSMessage messageWithDictionary:message];
         if(![self checkJSMessageParameterValid:messageBody])
         {
-            NSLog(@"<<web call app error data formate,no action/handler:%@>>",message);
+            CSLog(@"web call app error data formate,no action/handler:%@",message);
             return;
         }
         //ios主动调用js，js中对应的对象及方法，如:"jsBridge.nativeCallWeb",动态获取，非写死
@@ -60,7 +60,7 @@
             if (message.callbackID.length) {
                 self.jsCallbackFunction = message.callbackFunction;
                 NSString* script = [NSString stringWithFormat:@"%@('%@');", self.jsCallbackFunction,[message toJavascriptMessage]];
-                NSLog(@"callJSWithScript:%@",script);
+                CSLog(@"callJSWithScript:%@",script);
                 [self callJSWithAction:message.action script:script];
             }
         }];
@@ -87,7 +87,7 @@
 JSCompletionBlock:(CSJSCompletionBlock)jsCompletionBlock
 {
     NSString* script = [NSString stringWithFormat:@"%@('%@','%@');", self.nativeCallWebFunction,action,[message toJavascriptMessage]];
-    NSLog(@"callJSWithScript:%@",script);
+    CSLog(@"callJSWithScript:%@",script);
     [self callJSWithAction:action script:script JSCompletionBlock:jsCompletionBlock];
 }
 

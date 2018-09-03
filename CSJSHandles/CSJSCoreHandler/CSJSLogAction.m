@@ -7,14 +7,17 @@
 //
 
 #import "CSJSLogAction.h"
+#import "CSJSLog.h"
 
 @implementation CSJSLogAction
 
 - (void)callAppActionWithMessage:(CSJSMessage *)message jsCallBackBlock:(CSJSCallBackBlock)jsCallBackBlock
 {
     CSJSMessage *responceMessage  = message;
-    //doSth
-    NSLog(@"**JSLog:%@**",responceMessage.data);
+    NSDictionary *dic = [responceMessage toDictionary];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    CSLog([[@"<<\n fromJslog: " stringByAppendingString:jsonString] stringByAppendingString:@"\n>>"]);
     jsCallBackBlock ? jsCallBackBlock(responceMessage) : nil;
 }
 
