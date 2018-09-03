@@ -27,9 +27,15 @@
         
         WKUserContentController *userContentController = [[WKUserContentController alloc] init];
         [userContentController addScriptMessageHandler:self name:CSJSNativeObject];
-        NSString *javaScriptSource = @"";
-        WKUserScript *userScript = [[WKUserScript alloc] initWithSource:javaScriptSource injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
-        [userContentController addUserScript:userScript];
+        
+        [self.injectJSScriptList enumerateObjectsUsingBlock:^(NSString * _Nonnull scriptName, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:scriptName ofType:@"js"];
+            NSString *script = [NSString stringWithContentsOfURL:[NSURL fileURLWithPath:path] encoding:NSUTF8StringEncoding error:nil];
+            if (script.length) {
+                WKUserScript *userScript = [[WKUserScript alloc] initWithSource:script injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
+                [userContentController addUserScript:userScript];
+            }
+        }];
         configuration.userContentController = userContentController;
         return configuration;
     }
@@ -55,17 +61,22 @@
     [super callAppNative:message.body];
 }
 
+- (void)callJS:(NSString *)script
+{
+    [self callJSWithAction:nil script:script JSCompletionBlock:nil];
+}
+
 - (void)callJSWithAction:(NSString *)action script:(NSString *)script JSCompletionBlock:(CSJSCompletionBlock)jsCompletionBlock
 {
     NSParameterAssert(script.length > 0);
     if ([[NSThread currentThread] isMainThread]) {
         [self.webView evaluateJavaScript:script completionHandler:^(id _Nullable data, NSError * _Nullable error) {
-            jsCompletionBlock(data);
+            jsCompletionBlock ? jsCompletionBlock(data) : nil;
         }];
     }else{
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.webView evaluateJavaScript:script completionHandler:^(id _Nullable data, NSError * _Nullable error) {
-                jsCompletionBlock(data);
+                jsCompletionBlock ? jsCompletionBlock(data) : nil;
             }];
         });
     }

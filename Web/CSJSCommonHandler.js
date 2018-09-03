@@ -1,4 +1,7 @@
 (function(window){
+    if(!window.jsBridge){
+        return;
+     }
     if(window.jsCommonHandler){
         return;
     }

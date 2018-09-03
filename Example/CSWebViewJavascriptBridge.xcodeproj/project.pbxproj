@@ -25,6 +25,8 @@
 		6F3824BF21378ACD00C12202 /* CSBridgeConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3824BE21378ACD00C12202 /* CSBridgeConstant.m */; };
 		6F3824C52137A07900C12202 /* CSJSBridgeCore.js in Resources */ = {isa = PBXBuildFile; fileRef = 6F3824C22137A07900C12202 /* CSJSBridgeCore.js */; };
 		6F3824C62137A07900C12202 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 6F3824C32137A07900C12202 /* demo.html */; };
+		6FB9DF1D213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9DF1C213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.m */; };
+		6FB9DF1F213CE8F8000736FE /* CSPreInjectJSScriptList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FB9DF1E213CE8F8000736FE /* CSPreInjectJSScriptList.plist */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		E67A5714213AF97A00F23A19 /* CSJSCoreSupportActions.plist in Resources */ = {isa = PBXBuildFile; fileRef = E67A5713213AF97A00F23A19 /* CSJSCoreSupportActions.plist */; };
@@ -85,6 +87,9 @@
 		6F3824BE21378ACD00C12202 /* CSBridgeConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSBridgeConstant.m; sourceTree = "<group>"; };
 		6F3824C22137A07900C12202 /* CSJSBridgeCore.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = CSJSBridgeCore.js; sourceTree = "<group>"; };
 		6F3824C32137A07900C12202 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
+		6FB9DF1B213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+TS_JavaScriptContext.h"; sourceTree = "<group>"; };
+		6FB9DF1C213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+TS_JavaScriptContext.m"; sourceTree = "<group>"; };
+		6FB9DF1E213CE8F8000736FE /* CSPreInjectJSScriptList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CSPreInjectJSScriptList.plist; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7EBB8E29DE8BFCEC00843D32 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -306,6 +311,8 @@
 			children = (
 				E6DFDD062136DDCB00833841 /* CSJSMessage.h */,
 				E6DFDD072136DDCB00833841 /* CSJSMessage.m */,
+				6FB9DF1B213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.h */,
+				6FB9DF1C213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.m */,
 				E6DFDD032136DC7500833841 /* CSJSBridgeActionHandlerManager.h */,
 				E6DFDD042136DC7500833841 /* CSJSBridgeActionHandlerManager.m */,
 				E6DFDCED2136D70900833841 /* CSWebViewJavascriptBridge.h */,
@@ -321,6 +328,7 @@
 				6F3824BE21378ACD00C12202 /* CSBridgeConstant.m */,
 				E6AD1175213BA4E900CAB358 /* CSWebBrowViewController.h */,
 				E6AD1176213BA4E900CAB358 /* CSWebBrowViewController.m */,
+				6FB9DF1E213CE8F8000736FE /* CSPreInjectJSScriptList.plist */,
 			);
 			name = CSJSBridge;
 			path = ../../CSJSBridge;
@@ -433,6 +441,7 @@
 			files = (
 				E6DFDD222139917800833841 /* CSJSSupportHandlers.plist in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				6FB9DF1F213CE8F8000736FE /* CSPreInjectJSScriptList.plist in Resources */,
 				E67A5714213AF97A00F23A19 /* CSJSCoreSupportActions.plist in Resources */,
 				6F3824C52137A07900C12202 /* CSJSBridgeCore.js in Resources */,
 				E67A571C213B7FD500F23A19 /* CSJSCommonHandler.js in Resources */,
@@ -520,6 +529,7 @@
 				E6DFDD082136DDCB00833841 /* CSJSMessage.m in Sources */,
 				E6AD117D213BE70600CAB358 /* CSJSAPIConfigAction.m in Sources */,
 				E67A5725213B88FB00F23A19 /* CSGetDeviceInfoAction.m in Sources */,
+				6FB9DF1D213CDEB0000736FE /* UIWebView+TS_JavaScriptContext.m in Sources */,
 				6F3824BF21378ACD00C12202 /* CSBridgeConstant.m in Sources */,
 				E67A571A213AF9FE00F23A19 /* CSJSLogAction.m in Sources */,
 				E6DFDD022136DC1700833841 /* CSJSCommonHandler.m in Sources */,

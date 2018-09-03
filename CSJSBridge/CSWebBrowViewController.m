@@ -38,13 +38,13 @@
     [super viewWillAppear:animated];
   
     [self addApplicationNotificationEvents];
-   //  [self.bridge dispatchEvent:CSJSWebViewWillAppearEvent data:nil];
+     [self.bridge dispatchEvent:CSJSWebViewWillAppearEvent data:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-  // [self.bridge dispatchEvent:CSJSWebViewDidAppearEvent data:nil];
+   [self.bridge dispatchEvent:CSJSWebViewDidAppearEvent data:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

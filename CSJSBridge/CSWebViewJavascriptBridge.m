@@ -22,6 +22,10 @@
         self.jsCallbackFunction = CSJSCallbackFunction;
         self.callWebFunction = CSJSNativeCallWebFunction;
          */
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"CSPreInjectJSScriptList" ofType:@"plist"];
+        self.injectJSScriptList = [NSArray arrayWithContentsOfFile:path];
+        
     }
     return self;
 }
@@ -115,5 +119,6 @@ JSCompletionBlock:(CSJSCompletionBlock)jsCompletionBlock
     }
     return valid;
 }
+
 
 @end

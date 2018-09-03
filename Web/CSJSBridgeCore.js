@@ -97,6 +97,7 @@
         msg.action = 'APIConfig';
         jsBridge.webCallNative(msg, handler);
     };
+                                     
     CSJSBridgeCore.prototype.nativeCallWeb = function (action,data){
          var handler = this.nativeCallMap[action];
          if(handler){
@@ -121,7 +122,7 @@
         //this变量慎用
         jsBridge.nativeJSAPIVersion = data['JSAPIVersion'];
     });
-   }, 1500);
+   }, 500);
 
    window.jsBridge = window.$ = jsBridge;
 })(window);

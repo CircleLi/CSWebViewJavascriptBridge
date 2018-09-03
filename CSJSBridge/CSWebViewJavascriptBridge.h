@@ -19,6 +19,8 @@
 
 @property (nonatomic,strong) id webView;
 
+@property (nonatomic,strong) NSArray<NSString *> *injectJSScriptList;
+
 + (instancetype)bridge;
 
 - (void)bridgeForWebView:(id)webView;
