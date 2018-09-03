@@ -2,17 +2,22 @@
 一个优雅的hybrid方案：native,JS端两端实现
 
 
-**CSWebViewJavascriptBridge是一套hybrid方案，包括iOS端与Web端的实现，可以为任意webView提供hybrid能力，也可以直接使用webBrowViewController提供的hybrid能力。JS端的依赖脚本提前注入到native的webview中，业务JS中可直接根据业务员模块进行调用，扩充。**
+**CSWebViewJavascriptBridge是一套hybrid方案，包括iOS端与Web端的实现，可以为任意webView提供hybrid能力，也可以直接使用webBrowViewController提供的hybrid能力。JS端的依赖脚本提前注入到native的webView中，业务JS中可直接根据业务员模块进行调用，扩充。**
 
 
 整体框架如图：
 
 1.Bridge:
 
+![Alt text](https://github.com/dormitory219/CSWebViewJavascriptBridge/blob/master/Readme/CSJSBridge.png)
+
 2.Handler,Action:
+
+![Alt text](https://github.com/dormitory219/CSWebViewJavascriptBridge/blob/master/Readme/CSJSHandlers.png)
 
 3.JS
 
+![Alt text](https://github.com/dormitory219/CSWebViewJavascriptBridge/blob/master/Readme/web.png)
 
 
 ### 说点其他的，hybrid能力分两大类
@@ -25,7 +30,8 @@
 比如：CSUIWebViewJavascriptBridge提供UIWebview的hybrid交互，CSWKWebViewJavascriptBridge提供WKWebview的hybrid的交互。
 
 下面来分别讲述本方案中native调用JS，JS调用native的流程及技术实现：
-##本方案技术实现
+
+## 本方案技术实现:
 
 ### 1. JS调用native:
    
@@ -164,7 +170,7 @@ CSJSCommonHandler.prototype.getDeviceInfo = function(callback){
 
 ```
 
-如上getLocationInfo调用：
+如上getDeviceInfo调用：
 
 ```
 jsCommonHandler.getDeviceInfo((data) => {
@@ -428,5 +434,9 @@ CSJSBridgeCore.prototype.callbackWeb = function(data){
     }
 };
 ```
+
+
+### 2. native调用JS:
+  待填坑。。。。
 
 
