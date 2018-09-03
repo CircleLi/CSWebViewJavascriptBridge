@@ -10,4 +10,12 @@
 
 @implementation CSGetDeviceInfoAction
 
+- (void)callAppActionWithMessage:(CSJSMessage *)message jsCallBackBlock:(CSJSCallBackBlock)jsCallBackBlock
+{
+    CSJSMessage *responceMessage  = message;
+    //doSth
+    
+    jsCallBackBlock ? jsCallBackBlock(responceMessage) : nil;
+}
+
 @end
