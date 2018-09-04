@@ -437,6 +437,108 @@ CSJSBridgeCore.prototype.callbackWeb = function(data){
 
 
 ### 2. native调用JS:
-  待填坑。。。。
+  这类业务普遍是native端提供相关事件，web端对native的事件进行注册监听。native一旦事件触发，web端对监听的事件进行响应。
+  一般监听事件两种：
+  
+  1. 为webViewController lifeCycle等方法，如viewWillAppear,viewDidAppear,
+  2. 为系统application事件，包括ApplicationWillEnterForeground,ApplicationDidEnterBackground,ApplicationWillResignActive,ApplicationDidBecomeActiv等事件。
+
+  #### 调用流程：
+  
+  1. native端：对以上两类事件进行监听：
+  
+  **CSWebBrowViewController.m**
+  
+  ```
+  - (void)addViewControllerlifeCycleEvents
+{
+    [self.bridge listenEvent:CSJSWebViewWillAppearEvent eventDispatchBlock:^(id data) {
+        [self.bridge callJS:CSJSWebViewWillAppearEvent message:nil JSCompletionBlock:^(id message) {
+            
+        }];
+    }];
+    [self.bridge listenEvent:CSJSWebViewDidAppearEvent eventDispatchBlock:^(id data) {
+        [self.bridge callJS:CSJSWebViewDidAppearEvent message:nil JSCompletionBlock:^(id message) {
+            
+        }];
+    }];
+    ******
+}
+
+  ```
+  
+  
+  ```
+  - (void)addApplicationNotificationEvents
+{
+    [self.bridge listenApplicationEvent:UIApplicationWillEnterForegroundNotification eventDispatchBlock:^(id data) {
+        [self.bridge callJS:UIApplicationWillEnterForegroundNotification message:nil JSCompletionBlock:^(id message) {
+            
+        }];
+    }];
+
+    
+    [self.bridge listenApplicationEvent:UIApplicationDidBecomeActiveNotification eventDispatchBlock:^(id data) {
+        [self.bridge callJS:UIApplicationDidBecomeActiveNotification message:nil JSCompletionBlock:^(id message) {
+            
+        }];
+    }];
+}
+  
+  ```
+  
+  事件触发后通知JS端,调用JS约定方法：
+  
+  ```
+  [self.bridge callJS:UIApplicationDidBecomeActiveNotification message:nil JSCompletionBlock:^(id message) {
+            
+        }];
+  ```
+  
+  
+  ```
+  jsBridge.nativeCallWeb(msg)
+  
+  ```
+  
+  2. 在JS端的nativeCallWeb实现:
+  
+  从nativeCallMap中取出对应监听事件event的function，进行回调，当然前提是JS端对该
+  event事件进行了注册监听，其实这个思路和JS端调用native的callback逻辑类似。
+  
+  ```
+      CSJSBridgeCore.prototype.nativeCallWeb = function (action,data){
+         var handler = this.nativeCallMap[action];
+         if(handler){
+           //不知道如何拿到js回调的结果:如以下执行调用(或者异步操作回调到native也未解决)
+        //    jsCommonHandler.registerNativeCall('share',function (data) {
+        //     jsCommonHandler.nativelog('callFromNative');
+        //     return {};
+        //   });
+           // var msg = handler(data);
+           handler(data);
+           var msg = {};
+           msg.action = action;
+           msg.tip = 'jsCompletion';
+           return msg;
+        }
+    } 
+  ```
+  
+   JS注册native监听事件方法：
+   
+   ```
+    CSJSBridgeCore.prototype.registerNativeCall = function (action,handler) {  
+    if(handler && typeof(handler) == 'function'){
+        this.nativelog(`registerNativeCall action:${action} sucesss`)
+        this.nativeCallMap[action] = handler;
+    }
+  }
+    
+   ```
+
+   至此，native-JS流程结束。
 
 
+### 3.其它
+  待更新。
