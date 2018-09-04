@@ -2,11 +2,7 @@
 一个优雅的hybrid方案：native,JS端两端实现
 
 
-<<<<<<< Updated upstream
-**CSWebViewJavascriptBridge是一套hybrid方案，包括iOS端与Web端的实现，可以为任意webView提供hybrid能力。JS端的依赖脚本提前注入到native的webView中，业务JS中可直接根据业务员模块进行调用，扩充。该方案可为UIWebView，WKWebView提供hybrid能力。**
-=======
 **CSWebViewJavascriptBridge是一套hybrid方案，包括iOS端与Web端的实现，可以为任意webView提供hybrid能力，也可以直接使用webBrowViewController提供的hybrid能力。JS端的依赖脚本提前注入到native的webview中，业务JS中可直接根据业务模块进行调用，扩充。**
->>>>>>> Stashed changes
 
 
 整体框架如图：
