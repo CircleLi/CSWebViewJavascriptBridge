@@ -2,7 +2,11 @@
 一个优雅的hybrid方案：native,JS端两端实现
 
 
+<<<<<<< Updated upstream
 **CSWebViewJavascriptBridge是一套hybrid方案，包括iOS端与Web端的实现，可以为任意webView提供hybrid能力。JS端的依赖脚本提前注入到native的webView中，业务JS中可直接根据业务员模块进行调用，扩充。该方案可为UIWebView，WKWebView提供hybrid能力。**
+=======
+**CSWebViewJavascriptBridge是一套hybrid方案，包括iOS端与Web端的实现，可以为任意webView提供hybrid能力，也可以直接使用webBrowViewController提供的hybrid能力。JS端的依赖脚本提前注入到native的webview中，业务JS中可直接根据业务模块进行调用，扩充。**
+>>>>>>> Stashed changes
 
 
 整体框架如图：
@@ -24,9 +28,9 @@
 1. web主动调用native,native处理完业务逻辑后回调web，web再处理相关业务逻辑;
 2. native主动调用web,web处理完业务逻辑后回调native;
 
-在iOS端可通过UIWebView ,WKWebView进行web业务的展示，基于两种webview的native交互方法不同，本套方案中的js-native交互使用的不是假跳转，如果native端使用UIWebview，则通过javascriptcore框架来进行hybrid交互，如果native端使用WKWebview，则通过window.webkit.messageHandlers方式来进行交互。
+在iOS端可通过UIWebView ,WKWebView进行web业务的展示，基于两种webview的native交互方法不同，本套方案中的JS-native交互使用的不是假跳转，如果native端使用UIWebView，则通过javascriptcore框架来进行hybrid交互，如果native端使用WKWebView，则通过window.webkit.messageHandlers方式来进行交互。
 
-在本方案中，native-js交互核心功能由CSWebViewJavascriptBridge提供，配合不同的webview提供子类化的业务定制，
+在本方案中，native-JS交互核心功能由CSWebViewJavascriptBridge提供，配合不同的webview提供子类化的业务定制，
 比如：CSUIWebViewJavascriptBridge提供UIWebview的hybrid交互，CSWKWebViewJavascriptBridge提供WKWebview的hybrid的交互。
 
 下面来分别讲述本方案中native调用JS，JS调用native的流程及技术实现：
@@ -37,7 +41,7 @@
    
    JS中webCallNative方法进行JS对native的业务调用，该方法挂载在CSJSBridgeCore上，调用时传入一个callback作为回调，每次调用时生成一个callbackID与callback映射到一个map中去。然后真正调用根据native端平台的判定，调不同方法。
    
-   对于iOS，由于UIWebview,WKWebView的交互通信方法不同，提供不同的交互方案，对于UIWebView，最终调用的是CSJSWebViewBridgeCore.callApp(msg)，而WKWebview调用的是window.webkit.messageHandlers.CSJSWebViewBridgeCore.postMessage(msg)
+   对于iOS，由于UIWebView,WKWebView的交互通信方法不同，提供不同的交互方案，对于UIWebView，最终调用的是CSJSWebViewBridgeCore.callApp(msg)，而WKWebView调用的是window.webkit.messageHandlers.CSJSWebViewBridgeCore.postMessage(msg)
    
    以下是CSJSBridgeCore.js部分实现：
 
@@ -217,7 +221,7 @@ native处理JS需要相应的业务处理，处理方案如下：
 
 2. 提前在load方法中注册对应action-actionName的映射，之后调用时通过actionName取映射action来进行调用；
 
-3. 将action首先通过manager分发到对应handler模块中，再由handler模块来分发到对应的action中，handlers通过plist映射注册，actions也通过plist文件映射注册；
+3. 将action首先通过manager分发到对应handler模块中，再由handler模块来分发到对应的action中，handlers通过plist映射注册到manager中，actions也通过plist文件映射注册到handler中；
  
  方案一通过category来划分业务，略为粗旷，不够细；
  
